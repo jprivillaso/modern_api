@@ -40,6 +40,9 @@ const validateBody = (
     }
   }
 
+  // After all the validations, check if request contains extra parameters
+  if (Object.keys(validationRules).length !== Object.keys(payload).length) return false;
+
   getLogger().info(`Params Validation result: ${isValid}`);
   return isValid;
 };
