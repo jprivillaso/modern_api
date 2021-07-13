@@ -5,7 +5,7 @@ const logStream = new PrettyStream();
 logStream.pipe(process.stdout);
 
 const log = Logger.createLogger({
-  name: 'asa-local-api',
+  name: 'appcues-api',
   streams: [{
     level: 'info',
     type: 'raw',
