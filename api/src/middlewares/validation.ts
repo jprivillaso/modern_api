@@ -66,7 +66,7 @@ function paramsValidationMiddleware(
     if (!validationRules) {
       next();
     } else {
-      getLogger().info('Inside validation middleware');
+      getLogger().info('Validating rules for payload:::');
       getLogger().info(req.body);
       getLogger().info(validationRules);
 

@@ -21,6 +21,10 @@ RUN ls -a
 RUN npm install
 RUN npm run build
 
+ENV RABBITMQ_USER=test
+ENV RABBITMQ_PWD=test
+
+
 EXPOSE 3333
 
 CMD [ "node", "./dist/index.js" ]
