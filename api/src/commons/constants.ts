@@ -1,7 +1,9 @@
-export const INVALID_PARAMETERS = 'Invalid parameters';
+export const INVALID_PARAMETERS_MESSAGE = 'Invalid parameters';
 
-export const NOT_FOUND = 'Resource not found';
+export const NOT_FOUND_MESSAGE = 'Resource not found';
 
-export const BAD_REQUEST_CODE = 400;
+export const BAD_REQUEST_ERROR = 400;
 
-export const RESOURCE_NOT_FOUND = 404;
+export const NOT_FOUND_ERROR = 404;
+
+export const INTERNAL_SERVER_ERROR = 500;

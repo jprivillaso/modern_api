@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 
-import { BAD_REQUEST_CODE, INVALID_PARAMETERS } from '../commons/constants';
+import { BAD_REQUEST_ERROR, INVALID_PARAMETERS_MESSAGE } from '../commons/constants';
 import { getLogger } from '../services/logger';
 import { MiddlewareFunction, ValidationRules } from '../types';
 
@@ -75,11 +75,11 @@ function paramsValidationMiddleware(
       if (!isValid) {
         const badRequestError = {
           error: {
-            message: INVALID_PARAMETERS,
-            status: BAD_REQUEST_CODE
+            message: INVALID_PARAMETERS_MESSAGE,
+            status: BAD_REQUEST_ERROR
           }
         };
-        res.status(BAD_REQUEST_CODE).send(badRequestError);
+        res.status(BAD_REQUEST_ERROR).send(badRequestError);
       } else {
         next();
       }

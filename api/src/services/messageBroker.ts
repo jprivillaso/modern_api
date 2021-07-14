@@ -2,18 +2,11 @@ import { closeConnection, createChannel, getConnection } from '../clients/rabbit
 import { getLogger } from './logger';
 
 export const sendMessageToBroker = async (message: string): Promise<void> => {
-  const MESSAGE_BROKER_QUEUE_NAME = process.env.MESSAGE_BROKER_QUEUE_NAME ?? 'increment';
-
   try {
-    console.log('get connection');
+    const MESSAGE_BROKER_QUEUE_NAME = process.env.MESSAGE_BROKER_QUEUE_NAME ?? 'increment';
 
     const connection = await getConnection();
-
-    console.log('connection ok');
-
     const channel = await createChannel(connection);
-
-    console.log('channel ok');
 
     channel.assertQueue(MESSAGE_BROKER_QUEUE_NAME, {
       durable: false
