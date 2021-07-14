@@ -12,18 +12,14 @@ COPY package*.json ./
 COPY config /app/config
 COPY tsconfig.json ./
 
-# # copy source code to /app/src folder
+# copy source code to /app/src folder
 COPY src /app/src
 
-# # check files list
+# check files list
 RUN ls -a
 
 RUN npm install
 RUN npm run build
-
-ENV RABBITMQ_USER=test
-ENV RABBITMQ_PWD=test
-
 
 EXPOSE 3333
 

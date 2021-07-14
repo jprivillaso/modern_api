@@ -1,4 +1,5 @@
 import amqp, { Connection, Channel } from 'amqplib/callback_api';
+import { getLogger } from '../services/logger';
 
 export const getConnection = (): Promise<Connection> => new Promise((resolve, reject) => {
   const user = process.env.RABBITMQ_USER;
@@ -11,6 +12,8 @@ export const getConnection = (): Promise<Connection> => new Promise((resolve, re
   const opt = { credentials: amqp.credentials.plain(user, pwd) };
 
   const MESSAGE_BROKER_URL = process.env.MESSAGE_BROKER_URL ?? 'amqp://localhost';
+
+  getLogger().info(`Connecting to message broker at ${MESSAGE_BROKER_URL}`);
 
   amqp.connect(MESSAGE_BROKER_URL, opt, (error, connection) => {
     if (error) {
