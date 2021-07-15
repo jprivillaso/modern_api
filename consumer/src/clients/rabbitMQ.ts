@@ -1,7 +1,15 @@
 import amqp, { Connection, Channel } from 'amqplib/callback_api';
 import { getLogger } from '../services/logger';
 
-export const getConnection = (): Promise<Connection> => new Promise((resolve, reject) => {
+const MAX_CONNECTION_RETRY = 5;
+
+const sleep = (
+  time: number
+): Promise<void> => new Promise(resolve => setTimeout(() => { resolve(); }, time));
+
+export const getConnection = (
+  retries?: number
+): Promise<Connection> => new Promise((resolve, reject) => {
   const user = process.env.RABBITMQ_USER;
   const pwd = process.env.RABBITMQ_PWD;
 
@@ -13,12 +21,20 @@ export const getConnection = (): Promise<Connection> => new Promise((resolve, re
   getLogger().info(`Connecting to message broker at ${host}`);
 
   const opt = { credentials: amqp.credentials.plain(user, pwd) };
-  amqp.connect(host, opt, (error, connection) => {
+  amqp.connect(host, opt, async (error, connection) => {
     if (error) {
-      reject(error);
+      if (!retries || retries < MAX_CONNECTION_RETRY) {
+        getLogger().info('Connection not ready. Retrying once again in 5 seconds ...');
+        await sleep(5000);
+        const connectionAfterRetry = await getConnection(retries ? retries + 1 : 1);
+        if (connectionAfterRetry) resolve(connectionAfterRetry);
+      } else {
+        reject(error);
+      }
+    } else {
+      getLogger().info('Connected to RabbitMQ!');
+      resolve(connection);
     }
-
-    resolve(connection);
   });
 });
 
@@ -34,8 +50,13 @@ export const createChannel = async (
   });
 });
 
-export const consumeMessage = async (channel: Channel, queueName: string, onMessage: any) => {
+export const consumeMessage = (
+  channel: Channel,
+  queueName: string,
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  onMessage: any
+): void => {
   channel.consume(queueName, onMessage, {
     noAck: true
   });
-}
+};

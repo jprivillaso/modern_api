@@ -52,7 +52,15 @@
     }
   ],
   "policies": [],
-  "queues": [],
+  "queues": [
+    {
+      "name": "increment",
+      "vhost": "/",
+      "durable": false,
+      "auto_delete": false,
+      "arguments": {}
+    }
+  ],
   "exchanges": [],
   "bindings": []
 }
