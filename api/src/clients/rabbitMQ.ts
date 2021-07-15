@@ -9,13 +9,11 @@ export const getConnection = (): Promise<Connection> => new Promise((resolve, re
     throw new Error('Environment variables missing: RABBITMQ_USER or RABBITMQ_PWD');
   }
 
+  const host = process.env.MESSAGE_BROKER_URL ?? 'amqp://localhost';
+  getLogger().info(`Connecting to message broker at ${host}`);
+
   const opt = { credentials: amqp.credentials.plain(user, pwd) };
-
-  const MESSAGE_BROKER_URL = process.env.MESSAGE_BROKER_URL ?? 'amqp://localhost';
-
-  getLogger().info(`Connecting to message broker at ${MESSAGE_BROKER_URL}`);
-
-  amqp.connect(MESSAGE_BROKER_URL, opt, (error, connection) => {
+  amqp.connect(host, opt, (error, connection) => {
     if (error) {
       reject(error);
     }

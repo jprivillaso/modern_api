@@ -9,6 +9,7 @@ Execute the following commands
 ```
 
 docker exec -it modern_api_rabbitmq_1 /bin/bash
+rabbitmqctl add_vhost /
 rabbitmqctl add_user test test
 rabbitmqctl set_user_tags test administrator
 rabbitmqctl set_permissions -p / test ".*" ".*" ".*"

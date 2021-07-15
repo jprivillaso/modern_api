@@ -10,24 +10,35 @@ services:
       - '15672:15672'
     env_file:
       - ./env/rabbitmq.env
-    volumes:
-      - 'rabbitmq_data:/bitnami'
     networks:
       - modern_network
+    volumes:
+      - 'rabbitmq_data:/bitnami'
+      # - ./ops/rabbitmq.sh:/docker-entrypoint-initdb.d/init.sh
   database:
     image: 'postgres'
+    restart: always
     ports:
       - "5432:5432"
     env_file:
       - ./env/database.env
+    networks:
+      - modern_network
     volumes:
       - database-data:/var/lib/postgresql/data/
+      - ./ops/init.sql:/docker-entrypoint-initdb.d/docker_postgres_init.sql
   api:
     build: ./api
     ports:
       - "3333:3333"
     env_file:
       - ./env/api.env
+    networks:
+      - modern_network
+  api:
+    build: ./consumer
+    env_file:
+      - ./env/consumer.env
     networks:
       - modern_network
 volumes:
