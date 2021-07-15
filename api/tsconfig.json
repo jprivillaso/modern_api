@@ -1,5 +1,5 @@
 {
-  "extends": "../config/ts/base",
+  "extends": "./config/ts/base",
   "compilerOptions": {
     "outDir": "dist"
   },
