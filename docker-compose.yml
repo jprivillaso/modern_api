@@ -14,7 +14,8 @@ services:
       - modern_network
     volumes:
       - 'rabbitmq_data:/bitnami'
-      # - ./ops/rabbitmq.sh:/docker-entrypoint-initdb.d/init.sh
+      - ./ops/rabbitmq.json:/etc/rabbitmq/definitions.json
+      - ./ops/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf
   database:
     image: 'postgres'
     restart: always
@@ -35,7 +36,7 @@ services:
       - ./env/api.env
     networks:
       - modern_network
-  api:
+  consumer:
     build: ./consumer
     env_file:
       - ./env/consumer.env
