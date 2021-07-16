@@ -53,6 +53,9 @@ the API.
 - Queue finetuning: The queue has a very simple configuration and it's definitely not production ready. However, it
 demonstrates the basics of an scalable, event-based application.
 
+- Make the code more resilient: Deal better with the service dependencies. Right now, I have a deterministic and limited
+number of retries. Adding an exponential backoff would be helpful too.
+
 ## Project Progress
 
 I used a backlog to help me organizing better the tasks. Take a look at it [here](https://github.com/jprivillaso/modern_api/projects/1).
