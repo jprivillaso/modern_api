@@ -63,7 +63,7 @@ function paramsValidationMiddleware(
   validationRules?: ValidationRules
 ): MiddlewareFunction {
   return async (req: Request, res: Response, next: NextFunction) => {
-    if (!validationRules) {
+    if (!validationRules || Object.keys(validationRules).length === 0) {
       next();
     } else {
       getLogger().info('Validating rules for payload:::');

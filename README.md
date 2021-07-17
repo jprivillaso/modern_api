@@ -43,6 +43,23 @@ If you want to scale up the consumers
   docker-compose up --scale consumer=5 -d
 ```
 
+## Design Decisions
+
+I chose splitting the application into multiple services because it's easier to maintain, reduce code coupling and is
+easy to scale. For example, I can scale up the consumers independently from the API. That's really important in large
+projects where different teams can work on different services simultaneously.
+
+I chose RabbitMQ because it's a very well established messaging broker. It's very fast and easy to configure.
+
+I chose NodeJS because it's the language that I have most experience with. On top of that, I used Typescript to make
+the code more robust. Checkout [an article](https://www.scalablepath.com/blog/start-using-typescript-today/) that I wrote about its benefits.
+
+I chose Docker Compose because it allows to run a set of Docker images in a very straightforward manner. Moreover, Docker
+is the default containarization solution by the time I'm writing this project and it's compatible with orchestrators
+such as Kubernetes and the majors Cloud providers.
+
+![Architecture](./docs/Architecture.png)
+
 ## Caveats and future work
 
 There are many things I'd like to add to this API. Especially, working in non-docker environments since it allows one

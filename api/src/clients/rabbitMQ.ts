@@ -13,6 +13,7 @@ export const getConnection = (): Promise<Connection> => new Promise((resolve, re
   getLogger().info(`Connecting to message broker at ${host}`);
 
   const opt = { credentials: amqp.credentials.plain(user, pwd) };
+
   amqp.connect(host, opt, (error, connection) => {
     if (error) {
       reject(error);
