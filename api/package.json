@@ -16,6 +16,7 @@
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.8.0",
+    "api-benchmark": "^1.0.1",
     "bunyan": "^1.8.15",
     "bunyan-pretty-colors": "^0.1.7",
     "cors": "^2.8.5",
@@ -36,7 +37,6 @@
     "@types/node": "^16.3.0",
     "@typescript-eslint/eslint-plugin": "^4.28.3",
     "@typescript-eslint/parser": "^4.28.2",
-    "api-benchmark": "^1.0.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-plugin-import": "^2.20.1",
