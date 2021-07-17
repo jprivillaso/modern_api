@@ -37,12 +37,6 @@ Or if you have a unix based OS, you can run
   make run
 ```
 
-If you want to scale up the consumers
-
-```
-  docker-compose up --scale consumer=5 -d
-```
-
 ## Design Decisions
 
 I chose splitting the application into multiple services because it's easier to maintain, reduce code coupling and is

@@ -1,14 +1,14 @@
 import amqp, { Connection, Channel } from 'amqplib/callback_api';
 import { getLogger } from '../services/logger';
 
-const MAX_CONNECTION_RETRY = 5;
+const MAX_CONNECTION_RETRY = 2;
 
 const sleep = (
   time: number
 ): Promise<void> => new Promise(resolve => setTimeout(() => { resolve(); }, time));
 
 export const getConnection = (
-  retries?: number
+  retries = 0
 ): Promise<Connection> => new Promise((resolve, reject) => {
   const user = process.env.RABBITMQ_USER;
   const pwd = process.env.RABBITMQ_PWD;
@@ -23,11 +23,17 @@ export const getConnection = (
   const opt = { credentials: amqp.credentials.plain(user, pwd) };
   amqp.connect(host, opt, async (error, connection) => {
     if (error) {
-      if (!retries || retries < MAX_CONNECTION_RETRY) {
+      if (retries < MAX_CONNECTION_RETRY) {
         getLogger().info('Connection not ready. Retrying once again in 5 seconds ...');
         await sleep(5000);
-        const connectionAfterRetry = await getConnection(retries ? retries + 1 : 1);
-        if (connectionAfterRetry) resolve(connectionAfterRetry);
+        console.log('retry with >>>', retries);
+        const connectionAfterRetry = await getConnection(retries + 1);
+        console.log('after connection retry', connectionAfterRetry);
+        if (connectionAfterRetry) {
+          resolve(connectionAfterRetry);
+        } else {
+          reject(error);
+        }
       } else {
         reject(error);
       }
@@ -56,9 +62,7 @@ export const consumeMessage = (
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   onMessage: any
 ): void => {
-  const MESSAGE_BROKER_QUEUE_NAME = process.env.MESSAGE_BROKER_QUEUE_NAME ?? 'increment';
-
-  channel.assertQueue(MESSAGE_BROKER_QUEUE_NAME, {
+  channel.assertQueue(queueName, {
     durable: false
   });
 

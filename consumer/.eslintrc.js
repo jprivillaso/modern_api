@@ -55,6 +55,9 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'error'
   },
   env: {
-    'mocha': true
+    "jest": true
+  },
+  globals: {
+    "jest": true
   }
 };

@@ -12,9 +12,9 @@ The RabbitMQ queue will held, but if this service is not scaled up, it will limi
 
 ## Design Decisions
 
-This service is not production ready. Although, with a minor tweak and a load balancer, you can configure this service
-to receive requests under an ALB. The data synchronization works with eventual consistency, which means that eventually,
-after a few seconds, the messages will reach the PostgreSQL database.
+This service is not production ready. Although, with a load balancer, you can scale up this service.
+The data synchronization works with eventual consistency, which means that eventually, after a few seconds,
+the messages will reach the PostgreSQL database.
 
 ## Future Work for this API
 
