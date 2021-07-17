@@ -22,3 +22,7 @@ the messages will reach the PostgreSQL database.
 - Handle RabbitMQ connections in a better manner.
 - Encrypt passwords and handle sensitive information in a better manner.
 - Using a config manager to inject the environment variables so that they are not hardcoded in the repository.
+
+## Rate Limit
+
+This API only allows 20 requests per minute from the same IP to avoid overwhelming the service.
