@@ -9,12 +9,14 @@
     "build": "tsc",
     "lint": "eslint ./src --ext .ts --fix",
     "test": "jest",
-    "test:coverage": "jest --coverage --colors"
+    "test:coverage": "jest --coverage --colors",
+    "benchmark": "npm run build && node dist/benchmark/index"
   },
   "author": "Juan Rivillas",
   "license": "ISC",
   "dependencies": {
     "amqplib": "^0.8.0",
+    "api-benchmark": "^1.0.1",
     "bunyan": "^1.8.15",
     "bunyan-pretty-colors": "^0.1.7",
     "cors": "^2.8.5",

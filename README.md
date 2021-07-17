@@ -37,6 +37,12 @@ Or if you have a unix based OS, you can run
   make run
 ```
 
+If you want to scale up the consumers
+
+```
+  docker-compose up --scale consumer=5 -d
+```
+
 ## Caveats and future work
 
 There are many things I'd like to add to this API. Especially, working in non-docker environments since it allows one
@@ -56,9 +62,26 @@ demonstrates the basics of an scalable, event-based application.
 - Make the code more resilient: Deal better with the service dependencies. Right now, I have a deterministic and limited
 number of retries. Adding an exponential backoff would be helpful too.
 
+- Deal better with exceptions
+
+## Benchmarks
+
+These benchmarks were gathered using a single node in the API. As mentioned above, we need an ALB to main API endpoint
+scalable. The consumers can be scaled up easier because they don't rely on a specific port.
+
+![Response times](./docs/benchmark1.png)
+
+![Distribution](./docs/benchmark2.png)
+
+![Request Details](./docs/benchmark3.png)
+
+![Request Response](./docs/benchmark4.png)
+
+![PostgreSQL](./docs/benchmark5.png)
+
 ## Project Progress
 
-I used a backlog to help me organizing better the tasks. Take a look at it [here](https://github.com/jprivillaso/modern_api/projects/1).
+I used a backlog to organize better the project progress. Take a look at it [here](https://github.com/jprivillaso/modern_api/projects/1).
 
 ## Contributors
 

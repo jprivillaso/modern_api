@@ -56,6 +56,12 @@ export const consumeMessage = (
   // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   onMessage: any
 ): void => {
+  const MESSAGE_BROKER_QUEUE_NAME = process.env.MESSAGE_BROKER_QUEUE_NAME ?? 'increment';
+
+  channel.assertQueue(MESSAGE_BROKER_QUEUE_NAME, {
+    durable: false
+  });
+
   channel.consume(queueName, onMessage, {
     noAck: true
   });
