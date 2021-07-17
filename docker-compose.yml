@@ -40,7 +40,7 @@ services:
       - modern_network
   consumer:
     depends_on:
-      - api
+      - rabbitmq
       - database
     build: ./consumer
     env_file:
