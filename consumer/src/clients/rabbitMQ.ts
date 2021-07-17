@@ -1,14 +1,14 @@
 import amqp, { Connection, Channel } from 'amqplib/callback_api';
 import { getLogger } from '../services/logger';
 
-const MAX_CONNECTION_RETRY = 2;
+const MAX_CONNECTION_RETRY = 10;
 
 const sleep = (
   time: number
 ): Promise<void> => new Promise(resolve => setTimeout(() => { resolve(); }, time));
 
 export const getConnection = (
-  retries = 0
+  retries = 1
 ): Promise<Connection> => new Promise((resolve, reject) => {
   const user = process.env.RABBITMQ_USER;
   const pwd = process.env.RABBITMQ_PWD;
@@ -24,11 +24,9 @@ export const getConnection = (
   amqp.connect(host, opt, async (error, connection) => {
     if (error) {
       if (retries < MAX_CONNECTION_RETRY) {
-        getLogger().info('Connection not ready. Retrying once again in 5 seconds ...');
+        getLogger().info(`Connection not ready. Retrying once again in 5 seconds. Retry # ${retries} ...`);
         await sleep(5000);
-        console.log('retry with >>>', retries);
         const connectionAfterRetry = await getConnection(retries + 1);
-        console.log('after connection retry', connectionAfterRetry);
         if (connectionAfterRetry) {
           resolve(connectionAfterRetry);
         } else {

@@ -1,0 +1,82 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2021-07-18T01:20:33.069Z",
+  "__export_source": "insomnia.desktop.app:v2021.4.1",
+  "resources": [
+    {
+      "_id": "req_dd02e60d0cfa4114885c1cc3380d475d",
+      "parentId": "wrk_908915e70f1e421a8c2fb07e1244d6de",
+      "modified": 1626571168791,
+      "created": 1626214933528,
+      "url": "http://localhost:3333/increment",
+      "name": "Increment Counter",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"key\": \"test_key\",\n\t\"value\": 10000\n}"
+      },
+      "parameters": [],
+      "headers": [
+        {
+          "name": "Content-Type",
+          "value": "application/json",
+          "id": "pair_1fdafeffd6d240bb94cdb45d70e58287"
+        }
+      ],
+      "authentication": {},
+      "metaSortKey": -1626214933528,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_908915e70f1e421a8c2fb07e1244d6de",
+      "parentId": null,
+      "modified": 1626214921451,
+      "created": 1626214921451,
+      "name": "modern_api",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "env_00f6d6ab17ccd2b323127f51c0b7a5a1542c8be5",
+      "parentId": "wrk_908915e70f1e421a8c2fb07e1244d6de",
+      "modified": 1626214921601,
+      "created": 1626214921601,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1626214921601,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_00f6d6ab17ccd2b323127f51c0b7a5a1542c8be5",
+      "parentId": "wrk_908915e70f1e421a8c2fb07e1244d6de",
+      "modified": 1626214921603,
+      "created": 1626214921603,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    },
+    {
+      "_id": "spc_978b564b9fa4411782989b4bbf2377fe",
+      "parentId": "wrk_908915e70f1e421a8c2fb07e1244d6de",
+      "modified": 1626214921454,
+      "created": 1626214921454,
+      "fileName": "modern_api",
+      "contents": "",
+      "contentType": "yaml",
+      "_type": "api_spec"
+    }
+  ]
+}

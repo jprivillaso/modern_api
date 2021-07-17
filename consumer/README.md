@@ -11,3 +11,5 @@ If you want to scale up the consumers, just run this command
 ```
   docker-compose up --scale consumer=5 -d
 ```
+
+Once it receives a message from RabbitMQ, it saves or updates a record in PostgreSQL using Knex postgres client.
