@@ -25,8 +25,7 @@ fine-tuning, especially in terms of security. However, they have the architectur
 
 ## Benchmarks
 
-I gathered these benchmarks using a single node in the API. As mentioned above, we need an ALB to main API endpoint
-scalable. The consumers can be scaled up easier because they don't rely on a specific port.
+I gathered these benchmarks using a single node in the API. As mentioned above, we need an ALB to main API endpoint scalable. The consumers can be scaled up easier because they don't rely on a specific port.
 
 ![Response times](./docs/benchmark1.png)
 
