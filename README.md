@@ -72,6 +72,8 @@ I chose Docker Compose because it allows to run a set of Docker images in a very
 is the default containarization solution by the time I'm writing this project and it's compatible with orchestrators
 such as Kubernetes and the majors Cloud providers.
 
+I chose JEST because it has an awesome integration with node and Typescript.
+
 ![Architecture](./docs/Architecture.png)
 
 ## Caveats and future work
@@ -94,6 +96,8 @@ to test it faster. However, there are things that I left as future improvements.
   number of retries. Adding an exponential backoff would be helpful too.
 
 - Deal better with exceptions.
+
+- Better test coverage.
 
 ## Project Progress
 
