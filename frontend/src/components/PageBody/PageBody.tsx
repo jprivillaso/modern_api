@@ -1,9 +1,14 @@
-import React from 'react';
-import { Body } from './PageBody.styled';
+import React, { FC } from 'react';
 
-const BodyComponent = () => {
+import { PageBody } from './PageBody.styled';
+
+interface Props {}
+
+const BodyComponent: FC<Props> = ({ children }) => {
   return (
-    <Body></Body>
+    <PageBody>
+      {children}
+    </PageBody>
   )
 };
 

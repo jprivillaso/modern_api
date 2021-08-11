@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-export const Body = styled.section`
+export const PageBody = styled.section`
   grid-area: body;
-  background-color: red;
-  opacity: 0.1;
+  background-color: lightcyan;
 `;

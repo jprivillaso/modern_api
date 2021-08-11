@@ -1,21 +1,43 @@
-import React from 'react';
+import React from "react";
 
-import PageBody from '../components/PageBody/PageBody';
-import Footer from '../components/Footer/Footer';
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
+
+// components
+import Footer from "../components/Footer/Footer";
+import Sidebar from "../components/Siderbar/Sidebar";
 import Header from '../components/Header/Header';
-import Sidebar from '../components/Siderbar/Sidebar';
 
-import './App.css';
+// pages
+import { Main } from "./App.styled";
+import Home from "./Home/Home";
+import Travel from "./Travel/Travel";
+import Shop from "./Shop/Shop";
 
-import { Main } from './App.styled';
+import "./App.css";
+import { PageBody } from "../components/PageBody/PageBody.styled";
 
 function App() {
   return (
     <Main>
-      <Header></Header>
-      <Sidebar></Sidebar>
-      <Footer></Footer>
-      <PageBody></PageBody>
+      <Router>
+        <Header></Header>
+        <Sidebar></Sidebar>
+        <Footer></Footer>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/home"/>
+          </Route>
+          <Route path="/home">
+            <PageBody><Home></Home></PageBody>
+          </Route>
+          <Route path="/travel">
+            <PageBody><Travel></Travel></PageBody>
+          </Route>
+          <Route path="/shop">
+            <PageBody><Shop></Shop></PageBody>
+          </Route>
+        </Switch>
+      </Router>
     </Main>
   );
 }
